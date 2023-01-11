@@ -5,13 +5,7 @@ def solution(a, b, n):
         n = (n // a) * b + (n % a)
         # n에 넣어 내가 받는 콜라의 수 재설정
     return answer
-    # while n >= a:
-    #     answer += (n // a) * b
-    #     n = (n // a) * b + (n % a)
-    # return answer
     
-    
-        
 # 20/2=10
 # 10/2=5
 # 5/2=2.5
