@@ -17,6 +17,7 @@ function App() {
   let [modal, setModal] = useState(false);
   let [_new, setNew] = useState(false);
   let [좋습니다, 수up] = useState(0,0,0);
+  let [title, setTitle] = useState(0);
 
 
 
@@ -90,17 +91,23 @@ function App() {
 
       {
         메뉴1.map(function(a, i){
-          return <div className="list" key='0'>
-          <h4> {a} <span onClick={()=>{수up(좋습니다+1)}}>💗</span>{좋습니다}</h4>
-          <p>{메뉴1[i]}</p>
+          return <div className="list" key={i}>
+          <h4 onClick={()=>{setModal(true); setTitle(i)}}>{a}<span onClick={()=>{수up(좋습니다+1)}}>💗</span>{좋습니다}</h4>
           <p>{i+1}</p>
           <p> {메뉴추천}</p>
           </div>
         })
-      } 
+      }
+
+      <button onClick={()=>{setTitle(0)}}>글제목0</button>
+      <button onClick={()=>{setTitle(1)}}>글제목1</button>
+      <button onClick={()=>{setTitle(2)}}>글제목2</button>
+
+
+
 
       {
-        modal == true ? <Modal/>: null
+        modal == true ? <Modal color = {'plum'} 김치볶음밥={김치볶음밥} 메뉴1={메뉴1} 내용={내용} 변경={변경} title={title}/>: null
       }
 
       {
@@ -113,12 +120,12 @@ function App() {
 }
 
 
-function Modal(){
+function Modal(props){
   return (
-    <div className='modal'>
-    <h4> 제목</h4>
-    <p> 날짜 </p>
-    <p>상세내용</p>
+    <div className='modal' style={{background : props.color}}>
+    <h4> {props.메뉴1[props.title]}</h4>
+    <p> {props.내용[1]} </p>
+    <button onClick={()=>{props.김치볶음밥('블로그 내용 변경')}}> 수정</button>
   </div>
   );
 }
